@@ -89,16 +89,16 @@ class Area_app(QMainWindow):
 						   		'hm (hectometers)', 'km (kilometers)', 'Mm (megameters)', 
 						   		'Gm (gigameters)', 'Tm (terameters)', 'Pm (petameters)', 
 						   		'Em (exameters)', 'Zm (zettameters)', 'Ym (yottameters)', 
-						   		'Rm (ronnameters)', 'Qm (quettameters)', 'twip', 'point (Imperial)', 
-						   		'point (Digital Standard)', 'point (European Traditional)', 'line/poppyseed', 
-						   		'pica (Imperial)', 'pica (Digital Standard)', 
-						   		'barleycorn', 'digit', 'finger (cloth measure)', 
-						   		'finger (fingerbreadth)', 'inch', 'stick', 'nail', 'palm', 'span', 
-						   		'link', 'shaftment', 'foot', 'hand', 'cubit', 'pace', 'yard', 'ell', 
-						   		'grade/step', 'fathom', 'rope', 'rod/pole/perch', 
-						   		'Ramsden\'s chain', 'Gunter\'s chain', 'shackle/shot', 'furlong', 
-						   		'cable (British Admiralty)', 'cable (US Navy)', 'Roman mile', 
-						   		'mile', 'nautical mile', 'league', 
+						   		'Rm (ronnameters)', 'Qm (quettameters)', 'twips', 'points (Imperial)', 
+						   		'points (Digital Standard)', 'points (European Traditional)', 'lines/poppyseeds', 
+						   		'picas (Imperial)', 'picas (Digital Standard)', 
+						   		'barleycorns', 'digits', 'fingers (cloth measure)', 
+						   		'fingers (fingerbreadth)', 'inches', 'sticks', 'nails', 'palms', 'spans', 
+						   		'links', 'shaftments', 'feet', 'hands', 'cubits', 'paces', 'yards', 'ells', 
+						   		'grades/steps', 'fathoms', 'ropes', 'rods/poles/perches', 
+						   		'Ramsden\'s chains', 'Gunter\'s chains', 'shackles/shots', 'furlongs', 
+						   		'cables (British Admiralty)', 'cables (US Navy)', 'Roman miles', 
+						   		'miles', 'nautical miles', 'leagues', 
 						   		'AU (astronomical unit)', 'ly (light year)', 'pc (parsec)']
 
 		self.combo_unit1 = QComboBox(self)
@@ -381,16 +381,12 @@ class Area_app(QMainWindow):
 
 
 			result = f'{result:.3E}'
-			print(result)
 			if '+' not in result: result = result[:5] + ' x 10^' + result[6:]
 			else: result = result[:5] + ' x 10^' + result[7:]
 
 			if unit_result in program_data.units_metric(unit = 'm'):
 				self.label24.setText(self.label24.text() + f'{result} {unit_result}{power_unit_result_metric}')
-			else:
-				if result != '1.000 x 10^00':
-					unit_result = self.imp_unit_plural(unit_result)
-					
+			else:					
 				self.label24.setText(self.label24.text() + f'{result} {power_unit_result_imp} {unit_result}')
 
 			self.error = False
@@ -403,21 +399,6 @@ class Area_app(QMainWindow):
 
 
 		self.label24.setVisible(True)
-
-# This method determines the plural form for various imperial units, printed with the result
-	def imp_unit_plural(self, unit_result):
-		if unit_result == 'inch': return 'inches'
-		elif unit_result == 'foot': return 'feet'
-		elif unit_result in ('point (Imperial)', 'point (Digital Standard)', 'point (European Traditional)'): return unit_result[:5] + 's' + unit_result[5:]
-		elif unit_result == 'line/poppyseed': return unit_result[:4] + 's' + unit_result[4:] + 's'
-		elif unit_result in ('pica (Imperial)', 'pica (Digital Standard)'): return unit_result[:4] + 's' + unit_result[4:]
-		elif unit_result in ('finger (cloth measure)', 'finger (fingerbreadth)'): return unit_result[:6] + 's' + unit_result[6:]
-		elif unit_result == 'grade/step': return unit_result[:5] + 's' + unit_result[5:] + 's'
-		elif unit_result == 'rod/pole/perch': return unit_result[:3] + 's' + unit_result[3:8] + 's' + unit_result[8:] + 'es'
-		elif unit_result == 'shackle/shot': return unit_result[:7] + 's' + unit_result[7:] + 's'
-		elif unit_result in ('cable (British Admiralty)', 'cable (US Navy)'): return unit_result[:5] + 's' + unit_result[5:]
-		elif unit_result in ('AU', 'ly', 'pc'): return unit_result
-		else: return unit_result + 's'
 
 # These methods import calculations from the other py file, with the goal of obtaining the 
 # area/volume value
