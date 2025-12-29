@@ -8,44 +8,53 @@ from PyQt5.QtCore import Qt, QSize
 sys.path.append(os.path.abspath('program_files'))
 import program_data
 
+# Defining the class of the application:
+
 class Area_app(QMainWindow):
 	def __init__(self):
 		super().__init__()
 		self.setWindowTitle('Area & Volume Calculator App')
 		self.move(300, 100)
-		self.setMinimumWidth(590)
+		self.setFixedSize(650, 520)
 		self.setWindowIcon(QIcon('program_files/icon.png'))
 
 		self.central_widget = QWidget()
 		self.setCentralWidget(self.central_widget)
 
+		self.error = False
+
 		self.initUI()
 
+		self.styles()
+
+# This method initializes the app's UI and its contents
 	def initUI(self):
+# The labels, buttons, line-edits, combos etc. are first defined:
 		self.label1 = QLabel('Calculate AREA/VOLUME of:')
-		self.label2 = QLabel('                             Length: ')
-		self.label3 = QLabel('                    Unit: ')
-		self.label4 = QLabel('                             Width: ')
-		self.label5 = QLabel('                    Unit: ')
-		self.label6 = QLabel('                             Height of shape: ')
-		self.label7 = QLabel('                    Unit: ')
-		self.label8 = QLabel('                             1ˢᵗ Semi-axis: ')
-		self.label9 = QLabel('                    Unit: ')
-		self.label10 = QLabel('                             2ⁿᵈ Semi-axis: ')
-		self.label11 = QLabel('                    Unit: ')
-		self.label12 = QLabel('                             3ʳᵈ Semi-axis: ')
-		self.label13 = QLabel('                    Unit: ')
-		self.label14 = QLabel('                             1ˢᵗ Base: ')
-		self.label15 = QLabel('                    Unit: ')
-		self.label16 = QLabel('                             2ⁿᵈ Base: ')
-		self.label17 = QLabel('                    Unit: ')
-		self.label18 = QLabel('                             Base of triangle: ')
-		self.label19 = QLabel('                    Unit: ')
-		self.label20 = QLabel(' Unit for RESULT: ')
+		self.label2 = QLabel('              Length: ')
+		self.label3 = QLabel('                                                      Unit: ')
+		self.label4 = QLabel('                Width: ')
+		self.label5 = QLabel('                                                      Unit: ')
+		self.label6 = QLabel('Height of shape: ')
+		self.label7 = QLabel('                                                      Unit: ')
+		self.label8 = QLabel('     1ˢᵗ Semi-axis: ')
+		self.label9 = QLabel('                                                      Unit: ')
+		self.label10 = QLabel('    2ⁿᵈ Semi-axis: ')
+		self.label11 = QLabel('                                                      Unit: ')
+		self.label12 = QLabel('     3ʳᵈ Semi-axis: ')
+		self.label13 = QLabel('                                                      Unit: ')
+		self.label14 = QLabel('            1ˢᵗ Base: ')
+		self.label15 = QLabel('                                                      Unit: ')
+		self.label16 = QLabel('           2ⁿᵈ Base: ')
+		self.label17 = QLabel('                                                      Unit: ')
+		self.label18 = QLabel('Base of triangle: ')
+		self.label19 = QLabel('                                                      Unit: ')
+		self.label20 = QLabel('                                   Unit for RESULT: ')
 		self.label21 = QLabel('Base: ')
-		self.label22 = QLabel('                             Height of form: ')
-		self.label23 = QLabel('                    Unit: ')
+		self.label22 = QLabel('  Height of form: ')
+		self.label23 = QLabel('                                                      Unit: ')
 		self.label24 = QLabel('\nResult: ')
+		self.label25 = QLabel('------------------------------------------------')
 
 		self.line_edit1 = QLineEdit(self)
 		self.line_edit2 = QLineEdit(self)
@@ -61,7 +70,7 @@ class Area_app(QMainWindow):
 		self.picture = QLabel('')
 
 		self.button1 = QPushButton('Calculate', self)
-		self.button1.setFixedSize(100, 25)
+		self.button1.setFixedSize(110, 35)
 
 		self.combo1 = QComboBox(self)
 		self.combo1.addItems(['Choose shape/form', 'Rectangle/Square (A)', 'Triangle (A)', 
@@ -93,139 +102,123 @@ class Area_app(QMainWindow):
 						   		'AU (astronomical unit)', 'ly (light year)', 'pc (parsec)']
 
 		self.combo_unit1 = QComboBox(self)
-		self.combo_unit1.addItems(self.combo_unititems)
-		self.combo_unit1.setFixedSize(170, 25)
-
 		self.combo_unit2 = QComboBox(self)
-		self.combo_unit2.addItems(self.combo_unititems)
-		self.combo_unit2.setFixedSize(170, 25)
-
 		self.combo_unit3 = QComboBox(self)
-		self.combo_unit3.addItems(self.combo_unititems)
-		self.combo_unit3.setFixedSize(170, 25)
-
 		self.combo_unit4 = QComboBox(self)
-		self.combo_unit4.addItems(self.combo_unititems)
-		self.combo_unit4.setFixedSize(170, 25)
-
 		self.combo_unit5 = QComboBox(self)
-		self.combo_unit5.addItems(self.combo_unititems)
-		self.combo_unit5.setFixedSize(170, 25)
-
 		self.combo_unit6 = QComboBox(self)
-		self.combo_unit6.addItems(self.combo_unititems)
-		self.combo_unit6.setFixedSize(170, 25)
-
 		self.combo_unit7 = QComboBox(self)
-		self.combo_unit7.addItems(self.combo_unititems)
-		self.combo_unit7.setFixedSize(170, 25)
-
 		self.combo_unit8 = QComboBox(self)
-		self.combo_unit8.addItems(self.combo_unititems)
-		self.combo_unit8.setFixedSize(170, 25)
-
 		self.combo_unit9 = QComboBox(self)
-		self.combo_unit9.addItems(self.combo_unititems)
-		self.combo_unit9.setFixedSize(170, 25)
-
 		self.combo_unit10 = QComboBox(self)
-		self.combo_unit10.addItems(self.combo_unititems)
-		self.combo_unit10.setFixedSize(170, 25)
-
 		self.combo_unit11 = QComboBox(self)
-		self.combo_unit11.addItems(self.combo_unititems)
-		self.combo_unit11.setFixedSize(170, 25)
 
-		space = QLabel('')
-		space.setFixedSize(50, 10)
+# The combos are adequately sized
+		for combo_unit in (self.combo_unit1, self.combo_unit2, self.combo_unit3, self.combo_unit4, self.combo_unit5, self.combo_unit6, self.combo_unit7, self.combo_unit8, self.combo_unit9, self.combo_unit10, self.combo_unit11):
+			combo_unit.addItems(self.combo_unititems)
+			combo_unit.setFixedSize(170, 25)
 
-		main_grid = self.central_widget.layout()
-		if main_grid is None:
-			main_grid = QGridLayout(self.central_widget)
+# The layout of the app is constructed
+		main_vbox = self.central_widget.layout()
+		if main_vbox is None:
+			main_vbox = QVBoxLayout(self.central_widget)
 
-		main_grid.addWidget(space, 0, 0)
-		main_grid.addWidget(self.label1, 1, 0)
-		main_grid.addWidget(self.combo1, 2, 0)
-		main_grid.addWidget(space, 2, 1, 1, 4)
-		main_grid.addWidget(self.button1, 2, 5)
-		main_grid.addWidget(space, 3, 0)
+		
+		main_vbox.addWidget(self.label1)
 
+		hbox1 = QHBoxLayout()
+		hbox1.addWidget(self.combo1)
+		hbox1.addStretch(1)
 
-		main_grid.addWidget(space, 4, 0)
-		main_grid.addWidget(space, 5, 0)
-
-		main_grid.addWidget(self.label21, 6, 0)
-		main_grid.addWidget(self.combo2, 7, 0)
-		
-		main_grid.addWidget(self.label2, 8, 0)
-		main_grid.addWidget(self.line_edit1, 8, 1)
-		
-		main_grid.addWidget(self.label3, 8, 2)
-		main_grid.addWidget(self.combo_unit1, 8, 3)
-		
-		main_grid.addWidget(self.label4, 9, 0)
-		main_grid.addWidget(self.line_edit2, 9, 1)
-		
-		main_grid.addWidget(self.label5, 9, 2)
-		main_grid.addWidget(self.combo_unit2, 9, 3)
-		
-		main_grid.addWidget(self.label6, 10, 0)
-		main_grid.addWidget(self.line_edit3, 10, 1)
-		
-		main_grid.addWidget(self.label7, 10, 2)
-		main_grid.addWidget(self.combo_unit3, 10, 3)
-		
-		main_grid.addWidget(self.label8, 11, 0)
-		main_grid.addWidget(self.line_edit4, 11, 1)
-		
-		main_grid.addWidget(self.label9, 11, 2)
-		main_grid.addWidget(self.combo_unit4, 11, 3)
-		
-		main_grid.addWidget(self.label10, 12, 0)
-		main_grid.addWidget(self.line_edit5, 12, 1)
-		
-		main_grid.addWidget(self.label11, 12, 2)
-		main_grid.addWidget(self.combo_unit5, 12, 3)
-		
-		main_grid.addWidget(self.label12, 13, 0)
-		main_grid.addWidget(self.line_edit6, 13, 1)
-		
-		main_grid.addWidget(self.label13, 13, 2)
-		main_grid.addWidget(self.combo_unit6, 13, 3)
-		
-		main_grid.addWidget(self.label14, 14, 0)
-		main_grid.addWidget(self.line_edit7, 14, 1)
-		
-		main_grid.addWidget(self.label15, 14, 2)
-		main_grid.addWidget(self.combo_unit7, 14, 3)
-
-		main_grid.addWidget(self.label16, 15, 0)
-		main_grid.addWidget(self.line_edit8, 15, 1)
-		
-		main_grid.addWidget(self.label17, 15, 2)
-		main_grid.addWidget(self.combo_unit8, 15, 3)
-		
-		main_grid.addWidget(self.label18, 16, 0)
-		main_grid.addWidget(self.line_edit9, 16, 1)
-		
-		main_grid.addWidget(self.label19, 16, 2)
-		main_grid.addWidget(self.combo_unit9, 16, 3)
-
-		main_grid.addWidget(self.label22, 17, 0)
-		main_grid.addWidget(self.line_edit10, 17, 1)
-
-		main_grid.addWidget(self.label23, 17, 2)
-		main_grid.addWidget(self.combo_unit10, 17, 3)
-
-		main_grid.addWidget(self.label20, 18, 2)
-		main_grid.addWidget(self.combo_unit11, 18, 3)
-
-		main_grid.addWidget(self.label24, 19, 0, 1, 6)
-
-		main_grid.addWidget(self.picture, 8, 5)
+		main_vbox.addLayout(hbox1)
+		main_vbox.addWidget(self.label25)
 
 
-		self.label24.setStyleSheet('font-size: 20px; font-weight: bold;')
+
+		main_vbox.addSpacing(50)
+
+
+
+		main_vbox.addWidget(self.label21)
+		main_vbox.addWidget(self.combo2)
+		
+		grid = QGridLayout()
+		grid.addWidget(self.label2, 2, 0)
+		grid.addWidget(self.line_edit1, 2, 1)
+		
+		grid.addWidget(self.label3, 2, 2)
+		grid.addWidget(self.combo_unit1, 2, 3)
+		
+		grid.addWidget(self.label4, 3, 0)
+		grid.addWidget(self.line_edit2, 3, 1)
+		
+		grid.addWidget(self.label5, 3, 2)
+		grid.addWidget(self.combo_unit2, 3, 3)
+		
+		grid.addWidget(self.label6, 4, 0)
+		grid.addWidget(self.line_edit3, 4, 1)
+		
+		grid.addWidget(self.label7, 4, 2)
+		grid.addWidget(self.combo_unit3, 4, 3)
+		
+		grid.addWidget(self.label8, 5, 0)
+		grid.addWidget(self.line_edit4, 5, 1)
+		
+		grid.addWidget(self.label9, 5, 2)
+		grid.addWidget(self.combo_unit4, 5, 3)
+		
+		grid.addWidget(self.label10, 6, 0)
+		grid.addWidget(self.line_edit5, 6, 1)
+		
+		grid.addWidget(self.label11, 6, 2)
+		grid.addWidget(self.combo_unit5, 6, 3)
+		
+		grid.addWidget(self.label12, 7, 0)
+		grid.addWidget(self.line_edit6, 7, 1)
+		
+		grid.addWidget(self.label13, 7, 2)
+		grid.addWidget(self.combo_unit6, 7, 3)
+		
+		grid.addWidget(self.label14, 8, 0)
+		grid.addWidget(self.line_edit7, 8, 1)
+		
+		grid.addWidget(self.label15, 8, 2)
+		grid.addWidget(self.combo_unit7, 8, 3)
+
+		grid.addWidget(self.label16, 9, 0)
+		grid.addWidget(self.line_edit8, 9, 1)
+		
+		grid.addWidget(self.label17, 9, 2)
+		grid.addWidget(self.combo_unit8, 9, 3)
+		
+		grid.addWidget(self.label18, 10, 0)
+		grid.addWidget(self.line_edit9, 10, 1)
+		
+		grid.addWidget(self.label19, 10, 2)
+		grid.addWidget(self.combo_unit9, 10, 3)
+
+		grid.addWidget(self.label22, 11, 0)
+		grid.addWidget(self.line_edit10, 11, 1)
+
+		grid.addWidget(self.label23, 11, 2)
+		grid.addWidget(self.combo_unit10, 11, 3)
+
+		grid.addWidget(self.label20, 12, 2)
+		grid.addWidget(self.combo_unit11, 12, 3)
+
+		grid.addWidget(self.button1, 13, 3)
+
+		grid.addWidget(self.picture, 2, 5)
+
+		main_vbox.addLayout(grid)
+
+
+
+		main_vbox.addStretch(1)
+
+
+
+		main_vbox.addWidget(self.label24)
 
 
 		self.reset_labels()
@@ -235,6 +228,28 @@ class Area_app(QMainWindow):
 		self.combo2.currentTextChanged.connect(self.choice_conebase)
 		self.button1.clicked.connect(self.calculate_clicked)
 
+# The styling method
+	def styles(self):
+		self.combo1.setFixedWidth(170)
+		self.combo1.setStyleSheet('font-size: 15px;')
+
+		self.combo2.setFixedWidth(225)
+		self.combo2.setStyleSheet('font-size: 15px;')
+
+
+		self.label1.setStyleSheet('font-size: 15px; font-weight: bold;')
+
+		self.label21.setStyleSheet('font-size: 15px; font-weight: bold;')
+
+		if self.error: answer_color = 'red'
+		else: answer_color = 'black'
+		self.label24.setStyleSheet(f'font-size: 20px; font-weight: bold; color: {answer_color};')
+
+		self.label25.setStyleSheet('font-size: 30px; font-weight: bold; color: gray;')
+
+		self.button1.setStyleSheet('font-size: 20px; font-weight: bold; padding: 8px;')
+
+# This method will display a dedicated menu for each shape selected
 	def choice(self):
 		if self.combo1.currentText() != 'Choose shape/form':
 			self.reset_labels()
@@ -262,6 +277,9 @@ class Area_app(QMainWindow):
 
 			if self.combo1.currentText() == 'Pyramid/Cone (V)': self.pyramid()
 
+			self.button1.setVisible(True)
+
+# The menus for each shape:
 	def rectangle(self):
 		tuple_rectangle = (self.label2, self.label3, self.label4, self.label5, 
 						   self.label20, self.line_edit1, self.line_edit2, self.picture, 
@@ -324,6 +342,7 @@ class Area_app(QMainWindow):
 						 self.combo_unit11)
 		for x in tuple_pyramid: x.setVisible(True)
 
+# This method will display a dedicated menu for each type of pyramid/cone base
 	def choice_conebase(self):
 		if self.combo2.currentText() != 'Choose base of pyramid/cone':
 			self.reset_labels_conebase()
@@ -342,6 +361,8 @@ class Area_app(QMainWindow):
 
 			if self.combo2.currentText() == 'Hexagon': self.hexagon()
 
+# This method will calculate the area/volume for each shape and print the result properly, 
+# most calculations being imported from the other py file
 	def calculate_clicked(self):
 		try:
 			self.label24.setText('\nResult: ')
@@ -351,28 +372,33 @@ class Area_app(QMainWindow):
 			if self.combo1.currentText() == 'Trapezoid (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_trapezoid(), '²', 'squared'
 			if self.combo1.currentText() == 'Pentagon (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_pentagon(), '²', 'squared'
 			if self.combo1.currentText() == 'Hexagon (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_hexagon(), '²', 'squared'
-			if self.combo1.currentText() == 'Cuboid/Cube (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_cuboid(), '³', 'cubed'
-			if self.combo1.currentText() == 'Ellipsoid/Sphere (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_ellipsoid(), '³', 'cubed'
-			if self.combo1.currentText() == 'Cylinder (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_cylinder(), '³', 'cubed'
-			if self.combo1.currentText() == 'Pyramid/Cone (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_pyramid(), '³', 'cubed'
+			if self.combo1.currentText() == 'Cuboid/Cube (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_cuboid(), '³', 'cubic'
+			if self.combo1.currentText() == 'Ellipsoid/Sphere (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_ellipsoid(), '³', 'cubic'
+			if self.combo1.currentText() == 'Cylinder (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_cylinder(), '³', 'cubic'
+			if self.combo1.currentText() == 'Pyramid/Cone (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_pyramid(), '³', 'cubic'
 
 			unit_result = self.units(self.combo_unit11.currentText())
-
-			print(unit_result)
 
 			if unit_result in program_data.units_metric(unit = 'm'):
 				self.label24.setText(self.label24.text() + f'{result:.3E} {unit_result}{power_unit_result_metric}')
 			else:
 				if result != 1:
 					unit_result = self.imp_unit_plural(unit_result)
-					print(unit_result)
 				
 				self.label24.setText(self.label24.text() + f'{result:.3E} {power_unit_result_imp} {unit_result}')
 
-		except Exception: self.label24.setText('\nError: invalid input or lack thereof')
+			self.error = False
+			self.styles()
+
+		except Exception:
+			self.label24.setText('\nError: invalid input or lack thereof')
+			self.error = True
+			self.styles()
+
 
 		self.label24.setVisible(True)
 
+# This method determines the plural form for various imperial units, printed with the result
 	def imp_unit_plural(self, unit_result):
 		if unit_result == 'inch': return 'inches'
 		elif unit_result == 'foot': return 'feet'
@@ -387,6 +413,8 @@ class Area_app(QMainWindow):
 		elif unit_result in ('AU', 'ly', 'pc'): return unit_result
 		else: return unit_result + 's'
 
+# These methods import calculations from the other py file, with the goal of obtaining the 
+# area/volume value
 	def calc_rectangle(self):
 		length = float(self.line_edit1.text())
 		unit_length = self.units(self.combo_unit1.currentText())
@@ -556,7 +584,7 @@ class Area_app(QMainWindow):
 						self.combo_unit1, self.combo_unit2, self.combo_unit3, 
 						self.combo_unit4, self.combo_unit5, self.combo_unit6, 
 						self.combo_unit7, self.combo_unit8, self.combo_unit9, 
-						self.combo_unit10, self.combo_unit11)
+						self.combo_unit10, self.combo_unit11, self.button1)
 		for x in tuple_labels: x.setVisible(False)
 
 	def reset_labels_conebase(self):
@@ -586,6 +614,7 @@ class Area_app(QMainWindow):
 					  self.combo_unit9, self.combo_unit10, self.combo_unit11):
 			combo.setCurrentIndex(0)
 
+# The main code of the app
 def main():
 	app = QApplication(sys.argv)
 	area_app = Area_app()
