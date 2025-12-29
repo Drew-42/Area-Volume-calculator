@@ -379,13 +379,19 @@ class Area_app(QMainWindow):
 
 			unit_result = self.units(self.combo_unit11.currentText())
 
+
+			result = f'{result:.3E}'
+			print(result)
+			if '+' not in result: result = result[:5] + ' x 10^' + result[6:]
+			else: result = result[:5] + ' x 10^' + result[7:]
+
 			if unit_result in program_data.units_metric(unit = 'm'):
-				self.label24.setText(self.label24.text() + f'{result:.3E} {unit_result}{power_unit_result_metric}')
+				self.label24.setText(self.label24.text() + f'{result} {unit_result}{power_unit_result_metric}')
 			else:
-				if result != 1:
+				if result != '1.000 x 10^00':
 					unit_result = self.imp_unit_plural(unit_result)
-				
-				self.label24.setText(self.label24.text() + f'{result:.3E} {power_unit_result_imp} {unit_result}')
+					
+				self.label24.setText(self.label24.text() + f'{result} {power_unit_result_imp} {unit_result}')
 
 			self.error = False
 			self.styles()
@@ -622,4 +628,5 @@ def main():
 	sys.exit(app.exec())
 
 if __name__ == '__main__':
+
 	main()
