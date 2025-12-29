@@ -73,58 +73,68 @@ class Area_app(QMainWindow):
 							  'Ellipse/Circle', 'Trapezoid', 'Pentagon', 'Hexagon'])
 
 		self.combo_unititems = ['Choose unit', 'qm (quectometers)', 'rm (rontometers)', 
-						   'ym (yoctometers)', 'zm (zeptometers)', 'am (attometers)', 
-						   'fm (femtometers)', 'pm (picometers)', 'nm (nanometers)', 
-						   'μm (micrometers)', 'mm (millimeters)', 'cm (centimeters)', 
-						   'dm (decimeters)', 'm (meters)', 'dam (decameters)', 
-						   'hm (hectometers)', 'km (kilometers)', 'Mm (megameters)', 
-						   'Gm (gigameters)', 'Tm (terameters)', 'Pm (petameters)', 
-						   'Em (exameters)', 'Zm (zettameters)', 'Ym (yottameters)', 
-						   'Rm (ronnameters)', 'Qm (quettameters)']
+						   		'ym (yoctometers)', 'zm (zeptometers)', 'am (attometers)', 
+						   		'fm (femtometers)', 'pm (picometers)', 'nm (nanometers)', 
+						   		'μm (micrometers)', 'mm (millimeters)', 'cm (centimeters)', 
+						   		'dm (decimeters)', 'm (meters)', 'dam (decameters)', 
+						   		'hm (hectometers)', 'km (kilometers)', 'Mm (megameters)', 
+						   		'Gm (gigameters)', 'Tm (terameters)', 'Pm (petameters)', 
+						   		'Em (exameters)', 'Zm (zettameters)', 'Ym (yottameters)', 
+						   		'Rm (ronnameters)', 'Qm (quettameters)', 'twip', 'point (Imperial)', 
+						   		'point (Digital Standard)', 'point (European Traditional)', 'line/poppyseed', 
+						   		'pica (Imperial)', 'pica (Digital Standard)', 
+						   		'barleycorn', 'digit', 'finger (cloth measure)', 
+						   		'finger (fingerbreadth)', 'inch', 'stick', 'nail', 'palm', 'span', 
+						   		'link', 'shaftment', 'foot', 'hand', 'cubit', 'pace', 'yard', 'ell', 
+						   		'grade/step', 'fathom', 'rope', 'rod/pole/perch', 
+						   		'Ramsden\'s chain', 'Gunter\'s chain', 'shackle/shot', 'furlong', 
+						   		'cable (British Admiralty)', 'cable (US Navy)', 'Roman mile', 
+						   		'mile', 'nautical mile', 'league', 
+						   		'AU (astronomical unit)', 'ly (light year)', 'pc (parsec)']
 
 		self.combo_unit1 = QComboBox(self)
 		self.combo_unit1.addItems(self.combo_unititems)
-		self.combo_unit1.setFixedSize(130, 25)
+		self.combo_unit1.setFixedSize(170, 25)
 
 		self.combo_unit2 = QComboBox(self)
 		self.combo_unit2.addItems(self.combo_unititems)
-		self.combo_unit2.setFixedSize(130, 25)
+		self.combo_unit2.setFixedSize(170, 25)
 
 		self.combo_unit3 = QComboBox(self)
 		self.combo_unit3.addItems(self.combo_unititems)
-		self.combo_unit3.setFixedSize(130, 25)
+		self.combo_unit3.setFixedSize(170, 25)
 
 		self.combo_unit4 = QComboBox(self)
 		self.combo_unit4.addItems(self.combo_unititems)
-		self.combo_unit4.setFixedSize(130, 25)
+		self.combo_unit4.setFixedSize(170, 25)
 
 		self.combo_unit5 = QComboBox(self)
 		self.combo_unit5.addItems(self.combo_unititems)
-		self.combo_unit5.setFixedSize(130, 25)
+		self.combo_unit5.setFixedSize(170, 25)
 
 		self.combo_unit6 = QComboBox(self)
 		self.combo_unit6.addItems(self.combo_unititems)
-		self.combo_unit6.setFixedSize(130, 25)
+		self.combo_unit6.setFixedSize(170, 25)
 
 		self.combo_unit7 = QComboBox(self)
 		self.combo_unit7.addItems(self.combo_unititems)
-		self.combo_unit7.setFixedSize(130, 25)
+		self.combo_unit7.setFixedSize(170, 25)
 
 		self.combo_unit8 = QComboBox(self)
 		self.combo_unit8.addItems(self.combo_unititems)
-		self.combo_unit8.setFixedSize(130, 25)
+		self.combo_unit8.setFixedSize(170, 25)
 
 		self.combo_unit9 = QComboBox(self)
 		self.combo_unit9.addItems(self.combo_unititems)
-		self.combo_unit9.setFixedSize(130, 25)
+		self.combo_unit9.setFixedSize(170, 25)
 
 		self.combo_unit10 = QComboBox(self)
 		self.combo_unit10.addItems(self.combo_unititems)
-		self.combo_unit10.setFixedSize(130, 25)
+		self.combo_unit10.setFixedSize(170, 25)
 
 		self.combo_unit11 = QComboBox(self)
 		self.combo_unit11.addItems(self.combo_unititems)
-		self.combo_unit11.setFixedSize(130, 25)
+		self.combo_unit11.setFixedSize(170, 25)
 
 		space = QLabel('')
 		space.setFixedSize(50, 10)
@@ -333,27 +343,49 @@ class Area_app(QMainWindow):
 			if self.combo2.currentText() == 'Hexagon': self.hexagon()
 
 	def calculate_clicked(self):
-		self.label24.setText('\nResult: ')
-		try: 
-			if self.combo1.currentText() == 'Rectangle/Square (A)': result, power_unit_result = self.calc_rectangle(), '²'
-			if self.combo1.currentText() == 'Triangle (A)': result, power_unit_result = self.calc_triangle(), '²'
-			if self.combo1.currentText() == 'Ellipse/Circle (A)': result, power_unit_result = self.calc_ellipse(), '²'
-			if self.combo1.currentText() == 'Trapezoid (A)': result, power_unit_result = self.calc_trapezoid(), '²'
-			if self.combo1.currentText() == 'Pentagon (A)': result, power_unit_result = self.calc_pentagon(), '²'
-			if self.combo1.currentText() == 'Hexagon (A)': result, power_unit_result = self.calc_hexagon(), '²'
-			if self.combo1.currentText() == 'Cuboid/Cube (V)': result, power_unit_result = self.calc_cuboid(), '³'
-			if self.combo1.currentText() == 'Ellipsoid/Sphere (V)': result, power_unit_result = self.calc_ellipsoid(), '³'
-			if self.combo1.currentText() == 'Cylinder (V)': result, power_unit_result = self.calc_cylinder(), '³'
-			if self.combo1.currentText() == 'Pyramid/Cone (V)': result, power_unit_result = self.calc_pyramid(), '³'
+		try:
+			self.label24.setText('\nResult: ')
+			if self.combo1.currentText() == 'Rectangle/Square (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_rectangle(), '²', 'squared'
+			if self.combo1.currentText() == 'Triangle (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_triangle(), '²', 'squared'
+			if self.combo1.currentText() == 'Ellipse/Circle (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_ellipse(), '²', 'squared'
+			if self.combo1.currentText() == 'Trapezoid (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_trapezoid(), '²', 'squared'
+			if self.combo1.currentText() == 'Pentagon (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_pentagon(), '²', 'squared'
+			if self.combo1.currentText() == 'Hexagon (A)': result, power_unit_result_metric, power_unit_result_imp = self.calc_hexagon(), '²', 'squared'
+			if self.combo1.currentText() == 'Cuboid/Cube (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_cuboid(), '³', 'cubed'
+			if self.combo1.currentText() == 'Ellipsoid/Sphere (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_ellipsoid(), '³', 'cubed'
+			if self.combo1.currentText() == 'Cylinder (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_cylinder(), '³', 'cubed'
+			if self.combo1.currentText() == 'Pyramid/Cone (V)': result, power_unit_result_metric, power_unit_result_imp = self.calc_pyramid(), '³', 'cubed'
 
 			unit_result = self.units(self.combo_unit11.currentText())
 
-			self.label24.setText(self.label24.text() + f'{result} {unit_result}{power_unit_result}')
+			print(unit_result)
 
-		except Exception:
-			self.label24.setText('\nError: Check your inputs (or lack thereof)!')
+			if unit_result in program_data.units_metric(unit = 'm'):
+				self.label24.setText(self.label24.text() + f'{result:.3E} {unit_result}{power_unit_result_metric}')
+			else:
+				if result != 1:
+					unit_result = self.imp_unit_plural(unit_result)
+					print(unit_result)
+				
+				self.label24.setText(self.label24.text() + f'{result:.3E} {power_unit_result_imp} {unit_result}')
+
+		except Exception: self.label24.setText('\nError: invalid input or lack thereof')
 
 		self.label24.setVisible(True)
+
+	def imp_unit_plural(self, unit_result):
+		if unit_result == 'inch': return 'inches'
+		elif unit_result == 'foot': return 'feet'
+		elif unit_result in ('point (Imperial)', 'point (Digital Standard)', 'point (European Traditional)'): return unit_result[:5] + 's' + unit_result[5:]
+		elif unit_result == 'line/poppyseed': return unit_result[:4] + 's' + unit_result[4:] + 's'
+		elif unit_result in ('pica (Imperial)', 'pica (Digital Standard)'): return unit_result[:4] + 's' + unit_result[4:]
+		elif unit_result in ('finger (cloth measure)', 'finger (fingerbreadth)'): return unit_result[:6] + 's' + unit_result[6:]
+		elif unit_result == 'grade/step': return unit_result[:5] + 's' + unit_result[5:] + 's'
+		elif unit_result == 'rod/pole/perch': return unit_result[:3] + 's' + unit_result[3:8] + 's' + unit_result[8:] + 'es'
+		elif unit_result == 'shackle/shot': return unit_result[:7] + 's' + unit_result[7:] + 's'
+		elif unit_result in ('cable (British Admiralty)', 'cable (US Navy)'): return unit_result[:5] + 's' + unit_result[5:]
+		elif unit_result in ('AU', 'ly', 'pc'): return unit_result
+		else: return unit_result + 's'
 
 	def calc_rectangle(self):
 		length = float(self.line_edit1.text())
@@ -482,30 +514,35 @@ class Area_app(QMainWindow):
 
 	def units(self, unit_input):
 		if unit_input == self.combo_unititems[1]: return 'qm'
-		if unit_input == self.combo_unititems[2]: return 'rm'
-		if unit_input == self.combo_unititems[3]: return 'ym'
-		if unit_input == self.combo_unititems[4]: return 'zm'
-		if unit_input == self.combo_unititems[5]: return 'am'
-		if unit_input == self.combo_unititems[6]: return 'fm'
-		if unit_input == self.combo_unititems[7]: return 'pm'
-		if unit_input == self.combo_unititems[8]: return 'nm'
-		if unit_input == self.combo_unititems[9]: return 'μm'
-		if unit_input == self.combo_unititems[10]: return 'mm'
-		if unit_input == self.combo_unititems[11]: return 'cm'
-		if unit_input == self.combo_unititems[12]: return 'dm'
-		if unit_input == self.combo_unititems[13]: return 'm'
-		if unit_input == self.combo_unititems[14]: return 'dam'
-		if unit_input == self.combo_unititems[15]: return 'hm'
-		if unit_input == self.combo_unititems[16]: return 'km'
-		if unit_input == self.combo_unititems[17]: return 'Mm'
-		if unit_input == self.combo_unititems[18]: return 'Gm'
-		if unit_input == self.combo_unititems[19]: return 'Tm'
-		if unit_input == self.combo_unititems[20]: return 'Pm'
-		if unit_input == self.combo_unititems[21]: return 'Em'
-		if unit_input == self.combo_unititems[22]: return 'Zm'
-		if unit_input == self.combo_unititems[23]: return 'Ym'
-		if unit_input == self.combo_unititems[24]: return 'Rm'
-		if unit_input == self.combo_unititems[25]: return 'Qm'
+		elif unit_input == self.combo_unititems[2]: return 'rm'
+		elif unit_input == self.combo_unititems[3]: return 'ym'
+		elif unit_input == self.combo_unititems[4]: return 'zm'
+		elif unit_input == self.combo_unititems[5]: return 'am'
+		elif unit_input == self.combo_unititems[6]: return 'fm'
+		elif unit_input == self.combo_unititems[7]: return 'pm'
+		elif unit_input == self.combo_unititems[8]: return 'nm'
+		elif unit_input == self.combo_unititems[9]: return 'μm'
+		elif unit_input == self.combo_unititems[10]: return 'mm'
+		elif unit_input == self.combo_unititems[11]: return 'cm'
+		elif unit_input == self.combo_unititems[12]: return 'dm'
+		elif unit_input == self.combo_unititems[13]: return 'm'
+		elif unit_input == self.combo_unititems[14]: return 'dam'
+		elif unit_input == self.combo_unititems[15]: return 'hm'
+		elif unit_input == self.combo_unititems[16]: return 'km'
+		elif unit_input == self.combo_unititems[17]: return 'Mm'
+		elif unit_input == self.combo_unititems[18]: return 'Gm'
+		elif unit_input == self.combo_unititems[19]: return 'Tm'
+		elif unit_input == self.combo_unititems[20]: return 'Pm'
+		elif unit_input == self.combo_unititems[21]: return 'Em'
+		elif unit_input == self.combo_unititems[22]: return 'Zm'
+		elif unit_input == self.combo_unititems[23]: return 'Ym'
+		elif unit_input == self.combo_unititems[24]: return 'Rm'
+		elif unit_input == self.combo_unititems[25]: return 'Qm'
+		elif unit_input == self.combo_unititems[64]: return 'AU'
+		elif unit_input == self.combo_unititems[65]: return 'ly'
+		elif unit_input == self.combo_unititems[66]: return 'pc'
+		else: return unit_input
+
 
 	def reset_labels(self):
 		tuple_labels = (self.label2, self.label3, self.label4, self.label5, self.label6, 
